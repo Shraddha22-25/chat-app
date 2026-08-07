@@ -1,0 +1,142 @@
+.chat-box{
+    height: 75vh;
+    position: relative;
+    background: #f1f5ff;
+}
+.chat-user{
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #c6c6c6;
+}
+.chat-user img{
+    width: 25px;
+    border-radius: 50%;
+}
+.chat-user img:first-child{
+    width: 38px;
+    aspect-ratio: 1/1;
+}
+.chat-user p{
+    flex: 1;
+    font-size: 20px;
+    font-weight: 500;
+    color: #393939;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.chat-msg{
+    height: calc(100% - 70px);
+    padding: 15px;
+    padding-bottom: 70px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+.s-msg,
+.r-msg{
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+.s-msg{
+    justify-content: flex-end;
+}
+.r-msg{
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 9px;
+}
+.user-info img{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+.msg-content{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 220px;
+}
+.s-msg .msg-content{
+    align-items: flex-end;
+}
+.r-msg .msg-content{
+    align-items: flex-start;
+}
+.msg-img{
+    width: 200px;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 8px;
+}
+.msg{
+    background: #077EFF;
+    color: white;
+    padding: 8px 12px;
+    font-size: 10px;
+    line-height: 1.4;
+    border-radius: 10px;
+    word-break: break-word;
+    margin: 0;
+}
+
+.s-msg .msg{
+    border-radius: 10px 10px 0 10px;
+}
+
+.r-msg .msg{
+    border-radius: 10px 10px 10px 0;
+}
+.chat-input{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+}
+.chat-input input{
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+.chat-input img{
+    width: 28px;
+    cursor: pointer;
+}
+.chat-input label{
+    display: flex;
+}
+.chat-input label img{
+    width: 22px;
+}
+@media(max-width:900px){
+    .chat-box{
+        height:100vh;
+    }
+}
+@media(max-width:600px){
+    .chat-user p{
+        font-size:16px;
+    }
+    .msg-img{
+        width:170px;
+    }
+    .msg{
+        max-width:170px;
+        font-size:9px;
+    }
+}
