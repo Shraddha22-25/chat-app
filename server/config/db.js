@@ -1,11 +1,14 @@
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({
-    host: "127.0.0.1",
-    port:  3306,
-    user: "root",
-    password: "MySQL@22",
-    database: "chat_app"
+    host: process.env.DB_HOST,
+    port: 21246,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    ssl:{
+        rejectUnauthorized: false
+    }
 });
 db.connect((err) => {
 
