@@ -13,7 +13,7 @@ const RightSidebar = ({selectedUser}) => {
     return (
     <div className="rs">
       <div className="rs-profile">
-        <img src={ selectedUser?.image ? `http://localhost:5000/uploads/${selectedUser.image}`
+        <img src={ selectedUser?.image ? `http://chat-app-2qez.onrender.com/uploads/${selectedUser.image}`
       : assets.profile_img } alt=""/>
         <h3> {selectedUser?.name || "No User Selected"} <img src={assets.green_dot} 
         className="dot" alt="" /></h3>

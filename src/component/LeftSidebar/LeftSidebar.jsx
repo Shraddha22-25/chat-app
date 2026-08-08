@@ -5,7 +5,7 @@ import assets from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://chat-app-2qez.onrender.com");
 
 const LeftSidebar = ({ selectedUser, setSelectedUser }) => { 
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const LeftSidebar = ({ selectedUser, setSelectedUser }) => {
     try {
 
         const res = await axios.get(
-            "http://localhost:5000/api/chat/users"
+            "https://chat-app-2qez.onrender.com/api/chat/users"
         );
 
         if (res.data.success) {
@@ -81,7 +81,7 @@ useEffect(() => { socket.on("online_users", (users) => {
         <div key={user.id}className={`friends ${selectedUser?.id === user.id ? "active" : ""}`}
              onClick={() => setSelectedUser(user)}>
                 
-            <img src={ user.image ? `http://localhost:5000/uploads/${user.image}` : assets.profile_img}alt=""/>
+            <img src={ user.image ? `https://chat-app-2qez.onrender.com/uploads/${user.image}` : assets.profile_img}alt=""/>
             <div>
             <p>{user.name} {onlineUsers.includes(user.id.toString()) && (
             <img src={assets.green_dot} alt=""

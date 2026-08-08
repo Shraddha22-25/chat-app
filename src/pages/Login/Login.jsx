@@ -20,7 +20,7 @@ const handleSubmit = async (e) => {
         if (currState === "Sign up") {
 
             const res = await axios.post(
-                "http://localhost:5000/api/auth/register",
+                "https://chat-app-2qez.onrender.com/api/auth/register",
                 {
                     name, email, password
                 }
@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
               else {
 
             const res = await axios.post(
-                "http://localhost:5000/api/auth/login",
+                "https://chat-app-2qez.onrender.com/api/auth/login",
                 {
                     email,
                     password

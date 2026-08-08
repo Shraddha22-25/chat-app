@@ -5,7 +5,7 @@ import assets from "../../assets/assets";
 import { io } from "socket.io-client";
 import EmojiPicker from "emoji-picker-react";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://chat-app-2qez.onrender.com");
 
 const ChatBox = ({ selectedUser }) => {
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
@@ -20,7 +20,7 @@ const ChatBox = ({ selectedUser }) => {
       if (!selectedUser) return;
         try {
             const res = await axios.get(
-                `http://localhost:5000/api/chat/messages/${loggedInUser.id}/${selectedUser?.id}`
+                `https://chat-app-2qez.onrender.com/api/chat/messages/${loggedInUser.id}/${selectedUser?.id}`
             );
 
             if (res.data.success) {
@@ -59,7 +59,7 @@ const sendMessage = async () => {
         console.log("Image in FormData:", formData.get("image"));
 
         const res = await axios.post(
-            "http://localhost:5000/api/chat/send",
+            "https://chat-app-2qez.onrender.com/api/chat/send",
             formData,
             {
                 headers: {
@@ -97,7 +97,7 @@ const deleteMessage = async (id) => {
     try {
 
         const res = await axios.delete(
-            `http://localhost:5000/api/chat/delete/${id}`
+            `https://chat-app-2qez.onrender.com/api/chat/delete/${id}`
         );
 
         if (res.data.success) {
@@ -116,7 +116,7 @@ useEffect(() => {
 
     if (!selectedUser) return;
     fetchMessages();
-    axios.put("http://localhost:5000/api/chat/seen", {
+    axios.put("https://chat-app-2qez.onrender.com/api/chat/seen", {
         sender_id: selectedUser.id,
         receiver_id: loggedInUser.id
     });
@@ -171,7 +171,7 @@ useEffect(() => {
             <div className="msg-content">            
                 {msg.image && (
             <img 
-               src={`http://localhost:5000/uploads/${msg.image}`} className="msg-img" alt=""
+               src={`https://chat-app-2qez.onrender.com/uploads/${msg.image}`} className="msg-img" alt=""
     />
                 )} {msg.message && (
     <p className="msg">{msg.message}</p>
