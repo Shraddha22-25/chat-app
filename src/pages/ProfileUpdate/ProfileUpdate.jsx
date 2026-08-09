@@ -7,7 +7,6 @@ import assets from "../../assets/assets";
 const ProfileUpdate = () => {
   const navigate = useNavigate();
 
-  // LocalStorage se user fetch karna with fallback
   const user = JSON.parse(localStorage.getItem("user")) || {};
 
   const [image, setImage] = useState(null);
@@ -16,7 +15,6 @@ const ProfileUpdate = () => {
   const [name, setName] = useState(user?.name || "");
   const [bio, setBio] = useState(user?.bio || "");
 
-  // Image Preview Handler
   useEffect(() => {
     if (!image) {
       setPreviewUrl("");
@@ -59,7 +57,7 @@ const ProfileUpdate = () => {
        console.log("Bio:", bio);
       // Axios Call with Multipart Headers
       const res = await axios.put(
-        "http://localhost:5000/api/chat/update-profile",
+          "https://chat-app-2qez.onrender.com/api/chat/update-profile",
         formData,
         {
           headers: {
