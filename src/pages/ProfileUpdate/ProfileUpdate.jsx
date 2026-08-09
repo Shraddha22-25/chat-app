@@ -55,7 +55,8 @@ const ProfileUpdate = () => {
        console.log("FormData ID:", user.id);
        console.log("Name:", name);
        console.log("Bio:", bio);
-      // Axios Call with Multipart Headers
+      
+       
       const res = await axios.put(
           "https://chat-app-2qez.onrender.com/api/chat/update-profile",
         formData,
@@ -66,7 +67,6 @@ const ProfileUpdate = () => {
         }
       );
 
-      // LocalStorage update (agar backend naya user object bhej raha ho)
       if (res.data?.user) {
         localStorage.setItem("user", JSON.stringify(res.data.user));
       }
