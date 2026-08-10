@@ -74,16 +74,19 @@ useEffect(() => { socket.on("online_users", (users) => {
         </div>
 
          <div className="ls-list">
-        {users.filter((user) =>
-        user.name.toLowerCase().includes(search.toLowerCase())
-    )
+        {users
+        ?.filter((user) =>
+        (user?.name || user?.username || "")
+        .toLowerCase()
+        .includes((search || "").toLowerCase())
+        )
     .map((user) => (
-        <div key={user.id}className={`friends ${selectedUser?.id === user.id ? "active" : ""}`}
+        <div key={user.id} className={`friends ${selectedUser?.id === user.id ? "active" : ""}`}
              onClick={() => setSelectedUser(user)}>
                 
-            <img src={ user.image ? `https://chat-app-2qez.onrender.com/uploads/${user.image}` : assets.profile_img}alt=""/>
+            <img src={ user.image ? `https://chat-app-2qez.onrender.com/uploads/${user.image}` : assets.profile_img} alt=""/>
             <div>
-            <p>{user.name} {onlineUsers.includes(user.id.toString()) && (
+            <p>{user?.name || user?.username} {onlineUsers.includes(user.id.toString()) && (
             <img src={assets.green_dot} alt=""
                 style={{ width: "10px",
                        marginLeft: "8px"

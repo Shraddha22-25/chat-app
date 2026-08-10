@@ -3,7 +3,7 @@ import "./RightSidebar.css"
 import assets from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 
-const RightSidebar = ({selectedUser}) => { 
+const RightSidebar = ({ loggedInUser }) => { 
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -13,11 +13,14 @@ const RightSidebar = ({selectedUser}) => {
     return (
     <div className="rs">
       <div className="rs-profile">
-        <img src={ selectedUser?.image ? `http://chat-app-2qez.onrender.com/uploads/${selectedUser.image}`
-      : assets.profile_img } alt=""/>
-        <h3> {selectedUser?.name || "No User Selected"} <img src={assets.green_dot} 
-        className="dot" alt="" /></h3>
-        <p>{selectedUser?.bio || "No Bio Available"}</p>
+        <img src={ loggedInUser?.image 
+        ? `https://chat-app-2qez.onrender.com/uploads/${loggedInUser.image}`
+      : assets.profile_img 
+      } 
+      alt=""/>
+        <h3> {loggedInUser?.name || loggedInUser?.username || "My Profile"} 
+          <img src={assets.green_dot}  className="dot" alt="" /></h3>
+        <p>{loggedInUser?.bio || loggedInUser?.email || "No Bio Available"}</p>
       </div>
       <hr />
       <div className="rs-media">

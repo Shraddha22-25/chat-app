@@ -12,9 +12,9 @@ const Chat = () => {
     return (
        <div className="Chat">
         <div className="chat-container">
-           <LeftSidebar setSelectedUser={setSelectedUser}/>
-           <ChatBox selectedUser={selectedUser}/>
-           <RightSidebar selectedUser={loggedInUser}/>
+           <LeftSidebar setSelectedUser={setSelectedUser} setSelectedUser={setSelectedUser}/>
+           <ChatBox selectedUser={selectedUser} loggedInUser={loggedInUser}/>
+           <RightSidebar loggedInUser={loggedInUser}/>
          </div>
        </div>
     );

@@ -1,5 +1,6 @@
 .chat-box{
-    height: 75vh;
+    height: 100%;
+    min-height: 0;
     position: relative;
     background: #f1f5ff;
 }
