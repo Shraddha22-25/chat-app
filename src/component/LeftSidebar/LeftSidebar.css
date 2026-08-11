@@ -5,119 +5,103 @@
     display: flex;
     flex-direction: column;
 }
-
 .ls-top {
-    padding: 20px;
+    padding: 22px;
 }
-
 .ls-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .ls-nav .logo {
-    max-width: 140px;
+    max-width: 145px;
 }
-
 .ls-nav .menu {
     position: relative;
-    padding: 10px 0px;
+    padding: 10px 0;
 }
-
 .ls-nav .menu img {
-    max-height: 20px;
+    max-height: 21px;
     opacity: 0.6;
     cursor: pointer;
 }
-
 .ls-search {
     background-color: #002670;
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 12px;
-    margin-top: 20px;
+    padding: 11px 13px;
+    margin-top: 22px;
     border-radius: 6px;
 }
-
 .ls-search img {
-    width: 16px;
+    width: 17px;
 }
-
 .ls-search input {
     background: transparent;
     border: none;
     outline: none;
     color: white;
-    font-size: 13px;
+    font-size: 14px;
     width: 100%;
 }
-
 .ls-search input::placeholder {
     color: #c8c8c8;
 }
-
 .ls-list {
     flex: 1;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
-
 .friends {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
+    gap: 12px;
+    padding: 14px 22px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     transition: background 0.2s ease;
 }
-
 .friends img {
-    width: 38px;
-    height: 38px;
-    aspect-ratio: 1/1;
+    width: 42px;
+    height: 42px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-fit: cover;
 }
-
 .friends div {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
-
 .friends div p {
     margin: 0;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
 }
-
 .friends span {
     color: #9f9f9f;
-    font-size: 11px;
-    margin-top: 2px;
+    font-size: 12px;
+    margin-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
 .friends:hover {
     background-color: #077EFF;
 }
-
 .friends:hover span {
     color: white;
 }
-
 .friends.active,
 .friends.border {
     background-color: #077EFF;
 }
-
 .friends.active span,
 .friends.border span {
     color: white;
 }
-
 .menu .sub-menu {
     position: absolute;
     top: 100%;
@@ -131,31 +115,28 @@
     z-index: 10;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 .sub-menu hr {
     border: none;
     height: 1px;
     background: #a4a4a4;
-    margin: 8px 0px;
+    margin: 8px 0;
 }
-
 .sub-menu p {
     cursor: pointer;
     font-size: 14px;
     margin: 0;
 }
-
 .menu:hover .sub-menu {
     display: block;
 }
+@media (max-width: 900px) {
 
-@media (max-width:900px) {
     .ls {
         height: 100vh;
     }
 }
+@media (max-width: 600px) {
 
-@media (max-width:600px) {
     .ls-top {
         padding: 15px;
     }

@@ -4,93 +4,99 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 18px;
     box-sizing: border-box;
     overflow-y: auto;
 }
-
 .rs-profile {
-    padding-top: 15px;
+    padding-top: 18px;
     text-align: center;
-    max-width: 85%;
+    max-width: 90%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .rs-profile img {
-    width: 85px;
-    height: 85px;
-    aspect-ratio: 1/1;
+    width: 95px;
+    height: 95px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-fit: cover;
 }
-
 .rs-profile h3 {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    margin: 8px 0 2px 0;
+    margin: 10px 0 3px 0;
 }
-
 .rs-profile p {
-    font-size: 11px;
+    font-size: 12px;
     opacity: 0.8;
     font-weight: 300;
     margin: 0;
 }
-
 .rs hr {
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    margin: 12px 0;
+    margin: 15px 0;
     width: 100%;
 }
-
 .rs-media {
     padding: 0 5px;
-    font-size: 13px;
-    margin-bottom: 15px;
+    font-size: 14px;
+    margin-bottom: 18px;
 }
-
 .rs-media p {
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 14px;
 }
-
 .rs-media div {
-    max-height: 180px;
+    max-height: 220px;
     overflow-y: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
+    gap: 7px;
 }
-
 .rs-media div img {
     width: 100%;
-    height: 50px;
+    height: 60px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
 }
-
 .rs button {
     background: #077eff;
     color: white;
     border: none;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    padding: 10px 0;
-    width: 85%;
-    margin-top: auto; 
+    padding: 11px 0;
+    width: 90%;
+    margin-top: auto;
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
     cursor: pointer;
     display: block;
 }
+@media (max-width: 900px) {
+
+    .rs {
+        padding: 15px;
+    }
+
+    .rs-profile img {
+        width: 85px;
+        height: 85px;
+    }
+
+    .rs-media div img {
+        height: 55px;
+    }
+}
+
