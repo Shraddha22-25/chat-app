@@ -25,7 +25,7 @@
 .chat-user img:first-child {
     width: 38px;
     height: 38px;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 
@@ -54,15 +54,18 @@
     align-items: flex-end;
     gap: 8px;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .s-msg {
     justify-content: flex-end;
+    flex-direction: row;
 }
 
+
 .r-msg {
-    flex-direction: row-reverse;
     justify-content: flex-start;
+    flex-direction: row;
 }
 
 .user-info {
@@ -71,6 +74,7 @@
     align-items: center;
     font-size: 9px;
     color: #555555;
+    flex-shrink: 0;
 }
 
 .user-info img {
@@ -78,6 +82,10 @@
     height: 28px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.user-info p {
+    margin: 0;
 }
 
 .msg-content {
@@ -97,6 +105,7 @@
 
 .msg-img {
     width: 200px;
+    max-width: 100%;
     border-radius: 10px;
     display: block;
     margin-bottom: 8px;
@@ -156,19 +165,21 @@
     width: 22px;
 }
 
-@media(max-width:900px) {
+@media (max-width: 900px) {
     .chat-box {
         height: 100vh;
     }
 }
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
     .chat-user p {
         font-size: 16px;
     }
+
     .msg-img {
         width: 170px;
     }
+
     .msg {
         max-width: 170px;
         font-size: 10px;
