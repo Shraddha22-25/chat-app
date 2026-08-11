@@ -71,7 +71,6 @@ router.put("/seen", (req, res) => {
   `;
 
   db.query(sql, [sender_id, receiver_id], (err, result) => {
-    
     res.status(200).json({
       success: true,
       message: "Messages marked as seen"

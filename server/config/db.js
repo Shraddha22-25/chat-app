@@ -11,9 +11,9 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.log("❌ Database Connection Failed:", err.message);
+    console.log(" Database Connection Failed:", err.message);
   } else {
-    console.log("✅ Database Connected Successfully");
+    console.log(" Database Connected Successfully");
 
     const createUsersTable = `
       CREATE TABLE IF NOT EXISTS users (
@@ -34,6 +34,7 @@ db.connect((err) => {
         sender_id VARCHAR(100) NOT NULL,
         receiver_id VARCHAR(100) NOT NULL,
         message TEXT NOT NULL,
+        is_seen INT DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `;
@@ -44,6 +45,9 @@ db.connect((err) => {
       } else {
         console.log(" 'users' table is ready!");
         db.query("ALTER TABLE users MODIFY COLUMN username VARCHAR(100) DEFAULT NULL", () => {});
+        db.query("ALTER TABLE users ADD COLUMN name VARCHAR(100) DEFAULT 'User'", () => {});
+        db.query("ALTER TABLE users ADD COLUMN image VARCHAR(255) DEFAULT NULL", () => {});
+        db.query("ALTER TABLE users ADD COLUMN bio TEXT DEFAULT NULL", () => {});
       }
     });
 
@@ -52,6 +56,7 @@ db.connect((err) => {
         console.log("Messages table error:", queryErr.message);
       } else {
         console.log(" 'messages' table is ready!");
+        db.query("ALTER TABLE messages ADD COLUMN is_seen INT DEFAULT 0", () => {});
       }
     });
   }

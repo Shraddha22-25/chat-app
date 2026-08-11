@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../config/db");
 
-router.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {s
   const { name, email, password } = req.body;
   const username = req.body.username || name || email.split("@")[0];
 
