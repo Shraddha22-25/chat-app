@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const db = require("./config/db");
@@ -53,7 +52,7 @@ db.connect((err) => {
       if (fixErr) {
         console.log("Schema check: 'name' column exists.");
       } else {
-        console.log("✅ SUCCESS: Aiven Cloud DB me 'name' column add ho gaya!");
+        console.log("SUCCESS: Aiven Cloud DB me 'name' column add ho gaya!");
       }
     });
   }
