@@ -1,68 +1,96 @@
-.rs{
+.rs {
     color: white;
     background: #001030;
-    position: relative;
-    height: 75vh;
-    overflow-y: scroll;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
-.rs-profile{
-    padding-top: 60px;
+
+.rs-profile {
+    padding-top: 15px;
     text-align: center;
-    max-width: 70%;
-    margin: auto;
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.rs-profile img{
-    width: 110px;
+
+.rs-profile img {
+    width: 85px;
+    height: 85px;
     aspect-ratio: 1/1;
     border-radius: 50%;
+    object-fit: cover;
 }
-.rs-profile h3{
+
+.rs-profile h3 {
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 500;
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     gap: 5px;
-    margin: 5px 0px;
+    margin: 8px 0 2px 0;
 }
-.rs-profile p{
-    font-size: 10px;
-    opacity: 80%;
+
+.rs-profile p {
+    font-size: 11px;
+    opacity: 0.8;
     font-weight: 300;
+    margin: 0;
 }
-.rs hr{
-    border-color: #ffffff50;
-    margin: 15px 0px;
+
+.rs hr {
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 12px 0;
+    width: 100%;
 }
-.rs-media{
-    padding: 0px 20px;
+
+.rs-media {
+    padding: 0 5px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.rs-media p {
+    margin: 0 0 8px 0;
+    font-weight: 500;
     font-size: 13px;
 }
-.rs-media div{
+
+.rs-media div {
     max-height: 180px;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 5px;
-    margin-top: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
 }
-.rs-media div img{
-    width: 60px;
+
+.rs-media div img {
+    width: 100%;
+    height: 50px;
+    object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
 }
-.rs button{
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+
+.rs button {
     background: #077eff;
     color: white;
     border: none;
-    font-size: 12px;
-    font-weight: 300;
-    padding: 10px 65px;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 10px 0;
+    width: 85%;
+    margin-top: auto; 
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 20px;
     cursor: pointer;
-    
+    display: block;
 }
