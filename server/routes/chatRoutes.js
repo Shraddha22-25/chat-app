@@ -9,7 +9,7 @@ router.post("/send", (req, res) => {
   if (!sender_id || !receiver_id || !message) {
     return res.status(400).json({
       success: false,
-      message: "All fields are required"
+      message: "sender_id, receiver_id, and message are required"
     });
   }
 
@@ -18,12 +18,12 @@ router.post("/send", (req, res) => {
     VALUES (?, ?, ?)
   `;
 
-  db.query(sql, [sender_id, receiver_id, message], (err, result) => {
+  db.query(sql, [String(sender_id), String(receiver_id), message], (err, result) => {
     if (err) {
       console.log("Send Message Error:", err);
       return res.status(500).json({
         success: false,
-        message: "Message not sent: " + err.message
+        message: err.message
       });
     }
 
@@ -50,13 +50,31 @@ router.get("/messages/:senderId/:receiverId", (req, res) => {
       console.log("Fetch Messages Error:", err);
       return res.status(500).json({
         success: false,
-        message: "Error fetching messages"
+        message: err.message
       });
     }
 
     res.status(200).json({
       success: true,
       messages: result || []
+    });
+  });
+});
+
+router.put("/seen", (req, res) => {
+  const { sender_id, receiver_id } = req.body;
+
+  const sql = `
+    UPDATE messages 
+    SET is_seen = 1 
+    WHERE sender_id = ? AND receiver_id = ?
+  `;
+
+  db.query(sql, [sender_id, receiver_id], (err, result) => {
+    
+    res.status(200).json({
+      success: true,
+      message: "Messages marked as seen"
     });
   });
 });
@@ -69,7 +87,7 @@ router.get("/users", (req, res) => {
       console.log("Fetch Users Error:", err);
       return res.status(500).json({
         success: false,
-        message: "Failed to fetch users"
+        message: err.message
       });
     }
 
@@ -82,7 +100,7 @@ router.get("/users", (req, res) => {
 
 router.put("/update-profile", upload.single("image"), (req, res) => {
   const { id, name } = req.body;
-  const bio = req.body.bio || ""; // Bio empty string ho toh bhi chalega
+  const bio = req.body.bio || "";
 
   if (!id || !name) {
     return res.status(400).json({
@@ -97,11 +115,11 @@ router.put("/update-profile", upload.single("image"), (req, res) => {
   let params = [];
 
   if (image) {
-    sql = "UPDATE users SET name = ?, username = ?, bio = ?, image = ? WHERE id = ?";
-    params = [name, name, bio, image, id];
+    sql = "UPDATE users SET name = ?, bio = ?, image = ? WHERE id = ?";
+    params = [name, bio, image, id];
   } else {
-    sql = "UPDATE users SET name = ?, username = ?, bio = ? WHERE id = ?";
-    params = [name, name, bio, id];
+    sql = "UPDATE users SET name = ?, bio = ? WHERE id = ?";
+    params = [name, bio, id];
   }
 
   db.query(sql, params, (err, result) => {
@@ -109,19 +127,14 @@ router.put("/update-profile", upload.single("image"), (req, res) => {
       console.log("Update Profile Error:", err);
       return res.status(500).json({
         success: false,
-        message: "Database Update Failed: " + err.message
+        message: err.message
       });
     }
 
     res.status(200).json({
       success: true,
       message: "Profile Updated Successfully",
-      user: {
-        id,
-        name,
-        bio,
-        image
-      }
+      user: { id, name, bio, image }
     });
   });
 });

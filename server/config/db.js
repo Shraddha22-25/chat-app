@@ -11,15 +11,15 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.log("Database Connection Failed:", err.message);
+    console.log("❌ Database Connection Failed:", err.message);
   } else {
-    console.log("Database Connected Successfully");
+    console.log("✅ Database Connected Successfully");
 
     const createUsersTable = `
       CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) DEFAULT 'User',
-        username VARCHAR(100),
+        username VARCHAR(100) DEFAULT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
         password VARCHAR(225) NOT NULL,
         image VARCHAR(255) DEFAULT NULL,
@@ -31,8 +31,8 @@ db.connect((err) => {
     const createMessagesTable = `
       CREATE TABLE IF NOT EXISTS messages (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        sender_id INT NOT NULL,
-        receiver_id INT NOT NULL,
+        sender_id VARCHAR(100) NOT NULL,
+        receiver_id VARCHAR(100) NOT NULL,
         message TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
@@ -44,9 +44,6 @@ db.connect((err) => {
       } else {
         console.log(" 'users' table is ready!");
         db.query("ALTER TABLE users MODIFY COLUMN username VARCHAR(100) DEFAULT NULL", () => {});
-        db.query("ALTER TABLE users ADD COLUMN name VARCHAR(100) DEFAULT 'User'", () => {});
-        db.query("ALTER TABLE users ADD COLUMN image VARCHAR(255) DEFAULT NULL", () => {});
-        db.query("ALTER TABLE users ADD COLUMN bio TEXT DEFAULT NULL", () => {});
       }
     });
 
