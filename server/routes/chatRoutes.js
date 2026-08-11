@@ -105,6 +105,28 @@ router.put("/seen", (req, res) => {
   });
 });
 
+router.delete("/delete/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "DELETE FROM messages WHERE id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.log("Delete Message Error:", err);
+
+      return res.status(500).json({
+        success: false,
+        message: err.message
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Message deleted successfully"
+    });
+  });
+});
+
 router.get("/users", (req, res) => {
   const sql = `
     SELECT id, name, username, email, image, bio
