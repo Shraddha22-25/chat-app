@@ -43,7 +43,7 @@ db.connect((err) => {
       if (queryErr) {
         console.log("Users table error:", queryErr.message);
       } else {
-        console.log("✅ 'users' table is ready!");
+        console.log(" 'users' table is ready!");
         db.query("ALTER TABLE users ADD COLUMN name VARCHAR(100) DEFAULT 'User'", () => {});
         db.query("ALTER TABLE users ADD COLUMN image VARCHAR(255) DEFAULT NULL", () => {});
         db.query("ALTER TABLE users ADD COLUMN bio TEXT DEFAULT NULL", () => {});
@@ -54,7 +54,7 @@ db.connect((err) => {
       if (queryErr) {
         console.log("Messages table error:", queryErr.message);
       } else {
-        console.log("✅ 'messages' table is ready!");
+        console.log(" 'messages' table is ready!");
       }
     });
   }
