@@ -1,143 +1,178 @@
-.chat-box{
+.chat-box {
     height: 100%;
-    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #0b111e; /* Dark theme to match sidebars */
+    color: #ffffff;
     position: relative;
-    background: #f1f5ff;
 }
-.chat-user{
-    padding: 10px 15px;
+
+.chat-user {
+    padding: 12px 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid #c6c6c6;
+    gap: 12px;
+    background: #070a12;
+    border-bottom: 1px solid #1a2232;
 }
-.chat-user img{
+
+.chat-user img {
     width: 25px;
     border-radius: 50%;
 }
-.chat-user img:first-child{
+
+.chat-user img:first-child {
     width: 38px;
-    aspect-ratio: 1/1;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
 }
-.chat-user p{
+
+.chat-user p {
     flex: 1;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-    color: #393939;
+    color: #ffffff;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
+    margin: 0;
 }
-.chat-msg{
-    height: calc(100% - 70px);
-    padding: 15px;
-    padding-bottom: 70px;
+
+.chat-msg {
+    flex: 1;
+    padding: 20px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
+
 .s-msg,
-.r-msg{
+.r-msg {
     display: flex;
     align-items: flex-end;
     gap: 8px;
-    margin-bottom: 15px;
 }
-.s-msg{
+
+.s-msg {
     justify-content: flex-end;
 }
-.r-msg{
+
+.r-msg {
     flex-direction: row-reverse;
     justify-content: flex-start;
 }
-.user-info{
+
+.user-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 9px;
+    font-size: 10px;
+    color: #a0aec0;
 }
-.user-info img{
+
+.user-info img {
     width: 28px;
     height: 28px;
     border-radius: 50%;
+    object-fit: cover;
 }
-.msg-content{
+
+.msg-content {
     display: flex;
     flex-direction: column;
     width: fit-content;
-    max-width: 220px;
+    max-width: 280px;
 }
-.s-msg .msg-content{
+
+.s-msg .msg-content {
     align-items: flex-end;
 }
-.r-msg .msg-content{
+
+.r-msg .msg-content {
     align-items: flex-start;
 }
-.msg-img{
+
+.msg-img {
     width: 200px;
     border-radius: 10px;
     display: block;
     margin-bottom: 8px;
 }
-.msg{
-    background: #077EFF;
+
+.msg {
     color: white;
-    padding: 8px 12px;
-    font-size: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
     line-height: 1.4;
-    border-radius: 10px;
+    border-radius: 12px;
     word-break: break-word;
     margin: 0;
 }
 
-.s-msg .msg{
-    border-radius: 10px 10px 0 10px;
+.s-msg .msg {
+    background: #077EFF;
+    border-radius: 12px 12px 0 12px;
 }
 
-.r-msg .msg{
-    border-radius: 10px 10px 10px 0;
+.r-msg .msg {
+    background: #1a2232;
+    border-radius: 12px 12px 12px 0;
 }
-.chat-input{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: white;
+
+.chat-input {
+    background: #070a12;
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 15px;
+    padding: 12px 18px;
+    border-top: 1px solid #1a2232;
 }
-.chat-input input{
+
+.chat-input input {
     flex: 1;
     border: none;
     outline: none;
     font-size: 14px;
+    background: transparent;
+    color: #ffffff;
 }
-.chat-input img{
-    width: 28px;
+
+.chat-input input::placeholder {
+    color: #718096;
+}
+
+.chat-input img {
+    width: 24px;
     cursor: pointer;
 }
-.chat-input label{
+
+.chat-input label {
     display: flex;
+    cursor: pointer;
 }
-.chat-input label img{
+
+.chat-input label img {
     width: 22px;
 }
-@media(max-width:900px){
-    .chat-box{
-        height:100vh;
+
+@media(max-width: 900px) {
+    .chat-box {
+        height: 100vh;
     }
 }
-@media(max-width:600px){
-    .chat-user p{
-        font-size:16px;
+
+@media(max-width: 600px) {
+    .chat-user p {
+        font-size: 16px;
     }
-    .msg-img{
-        width:170px;
+    .msg-img {
+        width: 170px;
     }
-    .msg{
-        max-width:170px;
-        font-size:9px;
+    .msg {
+        max-width: 200px;
+        font-size: 12px;
     }
 }
