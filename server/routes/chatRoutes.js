@@ -4,160 +4,126 @@ const db = require("../config/db");
 const upload = require("../config/multer");
 
 router.post("/send", (req, res) => {
+  const { sender_id, receiver_id, message } = req.body;
 
-    const { sender_id, receiver_id, message } = req.body;
+  if (!sender_id || !receiver_id || !message) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required"
+    });
+  }
 
-    if (!sender_id || !receiver_id || !message) {
-        return res.status(400).json({
-            success: false,
-            message: "All fields are required"
-        });
+  const sql = `
+    INSERT INTO messages (sender_id, receiver_id, message)
+    VALUES (?, ?, ?)
+  `;
+
+  db.query(sql, [sender_id, receiver_id, message], (err, result) => {
+    if (err) {
+      console.log("Send Message Error:", err);
+      return res.status(500).json({
+        success: false,
+        message: "Message not sent: " + err.message
+      });
     }
 
-    const sql = `
-        INSERT INTO messages (sender_id, receiver_id, message)
-        VALUES (?, ?, ?)
-    `;
-
-    db.query(sql, [sender_id, receiver_id, message], (err, result) => {
-
-        if (err) {
-            return res.status(500).json({
-                success: false,
-                message: "Message not sent"
-            });
-        }
-
-        res.status(201).json({
-            success: true,
-            message: "Message Sent Successfully"
-        });
-
+    res.status(201).json({
+      success: true,
+      message: "Message Sent Successfully",
+      insertId: result.insertId
     });
-
+  });
 });
 
 router.get("/messages/:senderId/:receiverId", (req, res) => {
+  const { senderId, receiverId } = req.params;
 
-    const { senderId, receiverId } = req.params;
+  const sql = `
+    SELECT * FROM messages
+    WHERE (sender_id = ? AND receiver_id = ?)
+       OR (sender_id = ? AND receiver_id = ?)
+    ORDER BY created_at ASC
+  `;
 
-    const sql = `
-        SELECT * FROM messages
-        WHERE
-        (sender_id = ? AND receiver_id = ?)
-        OR
-        (sender_id = ? AND receiver_id = ?)
-        ORDER BY created_at ASC
-    `;
+  db.query(sql, [senderId, receiverId, receiverId, senderId], (err, result) => {
+    if (err) {
+      console.log("Fetch Messages Error:", err);
+      return res.status(500).json({
+        success: false,
+        message: "Error fetching messages"
+      });
+    }
 
-    db.query(
-        sql,
-        [senderId, receiverId, receiverId, senderId],
-        (err, result) => {
-
-            if (err) {
-                return res.status(500).json({
-                    success: false,
-                    message: "Error fetching messages"
-                });
-            }
-
-            res.status(200).json({
-                success: true,
-                messages: result
-            });
-
-        }
-    );
-
-});
-// Get All Users
-router.get("/users", (req, res) => {
-    const sql = "SELECT id, name, email, image FROM users";
-    db.query(sql, (err, result) => {
-        if (err) {
-            return res.status(500).json({
-                success: false,
-                message: "Failed to fetch users"
-            });
-        }
-        res.json({
-            success: true,
-            users: result
-        });
-
+    res.status(200).json({
+      success: true,
+      messages: result || []
     });
-
+  });
 });
-// Update Profile
+
+router.get("/users", (req, res) => {
+  const sql = "SELECT id, name, username, email, image, bio FROM users";
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log("Fetch Users Error:", err);
+      return res.status(500).json({
+        success: false,
+        message: "Failed to fetch users"
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      users: result || []
+    });
+  });
+});
+
 router.put("/update-profile", upload.single("image"), (req, res) => {
+  const { id, name } = req.body;
+  const bio = req.body.bio || ""; // Bio empty string ho toh bhi chalega
 
-    const { id, name, bio } = req.body;
+  if (!id || !name) {
+    return res.status(400).json({
+      success: false,
+      message: "ID and Name are required"
+    });
+  }
 
-    console.log("BODY:", req.body);
-    console.log("FILE:", req.file);
+  const image = req.file ? req.file.filename : null;
 
-    if (!id || !name || !bio) {
-        return res.status(400).json({
-            success: false,
-            message: "All fields are required"
-        });
+  let sql = "";
+  let params = [];
+
+  if (image) {
+    sql = "UPDATE users SET name = ?, username = ?, bio = ?, image = ? WHERE id = ?";
+    params = [name, name, bio, image, id];
+  } else {
+    sql = "UPDATE users SET name = ?, username = ?, bio = ? WHERE id = ?";
+    params = [name, name, bio, id];
+  }
+
+  db.query(sql, params, (err, result) => {
+    if (err) {
+      console.log("Update Profile Error:", err);
+      return res.status(500).json({
+        success: false,
+        message: "Database Update Failed: " + err.message
+      });
     }
 
-    let image = null;
-
-    if (req.file) {
-        image = req.file.filename;
-
-        const sql = `
-            UPDATE users
-            SET name = ?, bio = ?, image = ?
-            WHERE id = ?
-        `;
-
-        db.query(sql, [name, bio, image, id], (err, result) => {
-
-            if (err) {
-                console.log(err);
-                return res.status(500).json({
-                    success: false,
-                    message: err.message
-                });
-            }
-
-            res.json({
-                success: true,
-                message: "Profile Updated Successfully"
-            });
-
-        });
-
-    } else {
-
-        const sql = `
-            UPDATE users
-            SET name = ?, bio = ?
-            WHERE id = ?
-        `;
-
-        db.query(sql, [name, bio, id], (err, result) => {
-
-            if (err) {
-                console.log(err);
-                return res.status(500).json({
-                    success: false,
-                    message: err.message
-                });
-            }
-
-            res.json({
-                success: true,
-                message: "Profile Updated Successfully"
-            });
-
-        });
-
-    }
-
+    res.status(200).json({
+      success: true,
+      message: "Profile Updated Successfully",
+      user: {
+        id,
+        name,
+        bio,
+        image
+      }
+    });
+  });
 });
+
 module.exports = router;
