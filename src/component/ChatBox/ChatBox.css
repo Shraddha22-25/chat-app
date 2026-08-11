@@ -1,10 +1,11 @@
 .chat-box {
     height: 100%;
-    min-height: 0;
+    width: 100%;
     position: relative;
     background: #f1f5ff;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .chat-user {
@@ -111,7 +112,6 @@
     margin: 0;
 }
 
-/* Sender Message - Blue Background */
 .s-msg .msg {
     background: #077EFF;
     color: #ffffff;
