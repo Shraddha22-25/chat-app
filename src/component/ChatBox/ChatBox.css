@@ -1,10 +1,10 @@
 .chat-box {
     height: 100%;
-    width: 100%;
-    position: relative;
-    background: #f1f5ff;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    background: #f1f5ff;
+    position: relative;
     overflow: hidden;
 }
 
@@ -31,7 +31,7 @@
 
 .chat-user p {
     flex: 1;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     color: #393939;
     display: flex;
@@ -43,7 +43,6 @@
 .chat-msg {
     flex: 1;
     padding: 15px;
-    padding-bottom: 70px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -126,10 +125,6 @@
 }
 
 .chat-input {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background: #ffffff;
     display: flex;
     align-items: center;
