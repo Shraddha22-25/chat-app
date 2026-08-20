@@ -1,60 +1,315 @@
-.login{
+.login {
+    width: 100%;
     min-height: 100vh;
-    background: url(/background.png) no-repeat;
-    background-size: cover;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(
+        135deg,
+        #2563d8,
+        #3178e8,
+        #1e4db5
+    );
 }
-.login .logo{
-    width: max(20vw,200px);
+.login-container {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    border-radius: 14px;
+    overflow: hidden;
 }
-.login-form{
-    background: white;
-    padding: 20px 30px;
+.login-left {
+    width: 50%;
+    min-height: 650px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    border-radius: 10px;
-}
-.login-form h2{
-    font-size: 500;
-}
-.form-input{
-    padding: 8px 10px;
-    border: 1px solid #c9c9c9;
-    border-radius: 4px;
-    outline-color: #077EFF;
-}
-.login-form button{
-    padding: 10px;
-    background-color: #077EFF;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: white;
-    font-size: 16px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.login-logo-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.login-left h1 {
+    font-size: 52px;
+    font-weight: 600;
+    margin: 5px 0 8px;
+}
+.login-left p {
+    font-size: 19px;
+    margin: 0;
+    opacity: 0.95;
+}
+.login-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.login-form {
+    width: 100%;
+    max-width: 430px;
+    background: #ffffff;
+    padding: 38px 40px;
+    border-radius: 14px;
+    box-sizing: border-box;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.15);
+}
+.login-form h2 {
+    text-align: center;
+    color: #17213c;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+.form-subtitle {
+    text-align: center;
+    color: #64708a;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 25px;
+}
+.form-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 15px;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    border: 1px solid #d6dce8;
+    border-radius: 7px;
+    outline: none;
+    background: #ffffff;
+    color: #333;
+    font-size: 14px;
+}
+.form-input::placeholder {
+    color: #7b8498;
+}
+.form-input:focus {
+    border-color: #347df1;
+}
+.login-button {
+    width: 100%;
+    height: 52px;
     border: none;
-    border-radius: 4px;
+    border-radius: 7px;
+    background: linear-gradient(
+        90deg,
+        #3284f5,
+        #245bd5
+    );
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 3px;
+    transition: 0.2s;
+}
+.login-button:hover {
+    opacity: 0.9;
+}
+.login-term {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 13px;
+}
+.login-term input {
+    width: 13px;
+    height: 13px;
     cursor: pointer;
 }
-.login-term{
-    display: flex;
-    gap: 5px;
-    font-size: 12px;
-    color: #808080;
+.login-term p {
+    font-size: 11px;
+    color: #777;
+    margin: 0;
 }
-.login-forgot{
+.or-divider {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0;
 }
-.login-toggle{
+.or-divider span {
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
+.or-divider p {
+    margin: 0;
+    color: #777;
     font-size: 13px;
-    color: #5c5c5c;
-
 }
-.login-toggle span{
-    font-weight: 500;
-    color: #077EFF;
+.login-forget {
+    text-align: center;
+}
+.login-toggle {
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #555;
+}
+.login-toggle span {
+    color: #145bd5;
+    font-weight: 600;
     cursor: pointer;
+}
+.login-toggle span:hover {
+    text-decoration: underline;
+}
+@media (max-width: 900px) {
+
+    .login-container {
+        max-width: 750px;
+    }
+
+    .login-left h1 {
+        font-size: 40px;
+    }
+
+    .login-logo-icon {
+        width: 75px;
+        height: 75px;
+    }
+
+    .login-left p {
+        font-size: 16px;
+    }
+
+    .login-right {
+        padding: 20px;
+    }
+
+    .login-form {
+        max-width: 350px;
+        padding: 32px;
+    }
+
+    .login-form h2 {
+        font-size: 24px;
+    }
+}
+@media (max-width: 650px) {
+
+    .login {
+        padding: 15px;
+    }
+
+    .login-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .login-left {
+        width: 100%;
+        min-height: auto;
+        padding: 20px 10px 25px;
+    }
+
+    .login-logo-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 8px;
+    }
+
+    .login-left h1 {
+        font-size: 32px;
+        margin: 0 0 5px;
+    }
+
+    .login-left p {
+        font-size: 14px;
+    }
+
+    .login-right {
+        width: 100%;
+        padding: 0;
+    }
+
+    .login-form {
+        width: 100%;
+        max-width: 400px;
+        padding: 28px 22px;
+        border-radius: 12px;
+    }
+
+    .login-form h2 {
+        font-size: 23px;
+    }
+
+    .form-subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .form-input {
+        height: 48px;
+    }
+
+    .login-button {
+        height: 48px;
+    }
+}
+@media (max-width: 400px) {
+
+    .login {
+        padding: 10px;
+    }
+
+    .login-left {
+        padding: 12px 10px 18px;
+    }
+
+    .login-logo-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .login-left h1 {
+        font-size: 28px;
+    }
+
+    .login-left p {
+        font-size: 13px;
+    }
+
+    .login-form {
+        padding: 24px 18px;
+    }
+
+    .login-form h2 {
+        font-size: 21px;
+    }
+
+    .form-input {
+        height: 46px;
+        font-size: 13px;
+    }
+
+    .login-button {
+        height: 46px;
+        font-size: 14px;
+    }
+
+    .login-term p {
+        font-size: 10px;
+    }
+
+    .login-toggle {
+        font-size: 13px;
+    }
 }
